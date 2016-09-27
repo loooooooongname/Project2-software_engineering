@@ -13,11 +13,6 @@ public class DatabaseService {
 			Class.forName("com.mysql.jdbc.Driver");
 		}
 		catch (Exception e){
-			System.out.println(e.toString());
-            System.out.println("--------------------");
-            System.out.println(e.getMessage());
-            System.out.println("--------------------");
-            e.printStackTrace();
 			return false;
 		}
 		
