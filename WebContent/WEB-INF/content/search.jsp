@@ -4,17 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Welcome To Book Manager</title>
+<title>Search</title>
 </head>
 <body>
-<center>
-	<h1>
-		Welcome To Book Manager
-	</h1>
-	<p>
-	<button name="new" onclick="location='addbook'"> add new book</button><br/><br/>
-	<button name="search" onclick="location='search'">search books</button>
-	</p>
-</center>
+
+	<form action="Search" method="post">
+		InputAuthorName :<input type="text" name="authorname"/><br>
+		<input type="submit" value="ok"><br>
+	</form>
+
 </body>
 </html>

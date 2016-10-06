@@ -7,6 +7,15 @@ public class Book {
 	private String publisher;
 	private String publishdate;
 	private float price;
+	
+	public Book(String i,String t,String p,String pd,float pr){
+		ISBN = i;
+		title = t;
+		publisher = p;
+		publishdate = pd;
+		price = pr;
+	}
+	
 	public String getISBN() {
 		return ISBN;
 	}

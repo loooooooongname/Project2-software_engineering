@@ -1,14 +1,15 @@
 package seproject2Service;
 
 import java.sql.*;
-
+import java.util.List;
+import java.util.ArrayList;
 import seproject2Class.Author;
 import seproject2Class.Book;
 
 public class DatabaseService {
 
 	public boolean addBook(Book book, Author author) {
-		System.out.println("in");
+	//	System.out.println("in");
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
 		}
@@ -58,5 +59,67 @@ public class DatabaseService {
 			return false;
 		}
 		return true;
+	}
+
+	public List<Book> SearchBookByName(String authorname) {
+		
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+		}
+		catch (Exception e){
+			return null;
+		}
+		try{
+			Connection connect = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/sepro2","root","wr19950705");
+			Statement stmt = connect.createStatement();
+			Statement stmt2 = connect.createStatement();
+			List<Book> lb = new ArrayList<Book>();
+			
+			ResultSet rs = stmt.executeQuery("select * from author where Name = '"+authorname+"' ");
+			while (rs.next()){
+				int authorid = rs.getInt("AuthorID");
+				ResultSet rsbook = stmt2.executeQuery("select * from book where AuthorID = '"+authorid+"' ");
+				while (rsbook.next()){
+					Book b = new Book(rsbook.getString("ISBN"),
+							rsbook.getString("Title"),
+							rsbook.getString("Publisher"),
+							rsbook.getString("PublishDate"),
+							rsbook.getFloat("Price"));
+					lb.add(b);
+				}				
+			}
+			return lb;
+		}catch (Exception e){
+			System.out.println(e);
+			return null;
+		}
+		
+	}
+
+	public List<Author> SearchAuthorByName(String authorname) {
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+		}
+		catch (Exception e){
+			System.out.println("Open failed");
+			return null;
+		}
+		try{
+			Connection connect = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/sepro2","root","wr19950705");
+			Statement stmt = connect.createStatement();
+			ResultSet rs = stmt.executeQuery("select * from author where Name = '"+authorname+"' ");
+			List<Author> la = new ArrayList<Author>();
+			
+			while (rs.next()){	
+				Author a = new Author(rs.getString("Name"),rs.getInt("Age"),rs.getString("Country"));
+				la.add(a);
+			}
+			return la;
+		}catch (Exception e){
+			System.out.println("Operation failed");
+			return null;
+		}
 	}
 }

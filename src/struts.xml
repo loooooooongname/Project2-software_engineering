@@ -13,6 +13,11 @@
            <result name="error">/WEB-INF/content/failed.jsp</result>
        </action>
 
+	   <action name="Search" class="seproject2Action.SearchAction">
+           <result name="success">/WEB-INF/content/searchresult.jsp</result>
+           <result name="error">/WEB-INF/content/failed.jsp</result>
+       </action>
+
         <action name="*">
             <result>
                 /WEB-INF/content/{1}.jsp
