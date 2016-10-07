@@ -33,6 +33,7 @@ public class DatabaseService {
 					ext = true;
 				}
 			}
+			
 			if (!ext){
 				id++;
 				PreparedStatement Statement=connect.prepareStatement("INSERT INTO author VALUES (?,?,?,?)");
@@ -52,10 +53,12 @@ public class DatabaseService {
 				Statement.setFloat(6, book.getPrice());
 				Statement.executeUpdate();
 			}catch(Exception e){
+				System.out.println("55"+e);
 				return false;
 			}
 				
 		}catch(Exception e){
+			System.out.println("60"+e);
 			return false;
 		}
 		return true;
@@ -118,8 +121,30 @@ public class DatabaseService {
 			}
 			return la;
 		}catch (Exception e){
-			System.out.println("Operation failed");
+			System.out.println(e);
 			return null;
+		}
+	}
+
+	public boolean delbook(String del_book) {
+		
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+		}
+		catch (Exception e){
+			System.out.println(e);
+			return false;
+		}
+		
+		try{
+			Connection connect = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/sepro2","root","wr19950705");
+			Statement stmt = connect.createStatement();
+			stmt.executeUpdate("delete from book where ISBN = '"+del_book+"' ");
+			return true;
+		}catch (Exception e){
+			System.out.println(e);
+			return false;
 		}
 	}
 }

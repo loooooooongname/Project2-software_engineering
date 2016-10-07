@@ -31,14 +31,22 @@
 			<th>Publisher</th>
 			<th>PublishDate</th>
 			<th>Price</th>
+			<th>Operation</th>
 		</tr>
 		<s:iterator value="books" var="b">
+			
 			<tr>
 				<td>${b.ISBN}</td>
 				<td>${b.title}</td>
 				<td>${b.publisher}</td>
 				<td>${b.publishdate}</td>
 				<td>${b.price}</td>
+				<td>
+					<form action="DelBook" method="post">
+						<button name="del_book" type="submit" value="${b.ISBN}">del</button>
+						<button name="update_book" type="submit" value="${b.ISBN}">update</button>
+					</form>
+				</td>
 			</tr>
 		</s:iterator>
 	</table>

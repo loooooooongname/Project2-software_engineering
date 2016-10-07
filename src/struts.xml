@@ -18,6 +18,11 @@
            <result name="error">/WEB-INF/content/failed.jsp</result>
        </action>
 
+		<action name="DelBook" class="seproject2Action.DelBookAction">
+           <result name="success">/WEB-INF/content/success.jsp</result>
+           <result name="error">/WEB-INF/content/failed.jsp</result>
+       </action>
+
         <action name="*">
             <result>
                 /WEB-INF/content/{1}.jsp

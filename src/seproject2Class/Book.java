@@ -8,6 +8,7 @@ public class Book {
 	private String publishdate;
 	private float price;
 	
+	public Book(){};
 	public Book(String i,String t,String p,String pd,float pr){
 		ISBN = i;
 		title = t;
