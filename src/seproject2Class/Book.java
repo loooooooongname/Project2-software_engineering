@@ -4,6 +4,7 @@ public class Book {
 	
 	private String ISBN;
 	private String title;
+//	private int authorid;
 	private String publisher;
 	private String publishdate;
 	private float price;
@@ -12,11 +13,11 @@ public class Book {
 	public Book(String i,String t,String p,String pd,float pr){
 		ISBN = i;
 		title = t;
+	//	authorid = a;
 		publisher = p;
 		publishdate = pd;
 		price = pr;
 	}
-	
 	public String getISBN() {
 		return ISBN;
 	}

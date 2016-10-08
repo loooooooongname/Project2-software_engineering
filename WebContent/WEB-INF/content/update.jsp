@@ -5,25 +5,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Result</title>
+<title>Update</title>
 </head>
 <body>
-	<p>author</p>
-	<table border="1">
-		<tr>
-			<th>Name</th>
-			<th>Age</th>
-			<th>Country</th>
-		</tr>
-		<s:iterator value="authors" var="a">
-			<tr>
-				<td>${a.name}</td>
-				<td>${a.age}</td>
-				<td>${a.country}</td>
-			</tr>
-		</s:iterator>
-	</table>
-	<p>books</p>
+	<p>The original data</p>
 	<table border="1">
 		<tr>
 			<th>ISBN</th>
@@ -31,27 +16,30 @@
 			<th>Publisher</th>
 			<th>PublishDate</th>
 			<th>Price</th>
-			<th>Operation</th>
 		</tr>
 		<s:iterator value="books" var="b">
-			
 			<tr>
 				<td>${b.ISBN}</td>
 				<td>${b.title}</td>
 				<td>${b.publisher}</td>
 				<td>${b.publishdate}</td>
 				<td>${b.price}</td>
-				<td>
-					<form action="DelBook" method="post">
-						<button name="del_book" type="submit" value="${b.ISBN}">del</button>
-					</form>
-					<form action="ShowBook" method="post">
-						<button name="show_book" type="submit" value="${b.ISBN}">update</button>
-					</form>
-				</td>
 			</tr>
 		</s:iterator>
 	</table>
-	<button onclick="location='welcome'">Back to main</button>
+	<p>New data</p>
+	
+		<form action="updatebook" method="post">
+			ISBN : <input type="text" name="book.ISBN"/><br>
+			Title : <input type="text" name="book.title"/><br>
+			Publisher : <input type="text" name="book.publisher"/><br>	
+			PublishDate : <input type="text" name="book.publishdate"/><br>
+			Price : <input type="text" name="book.price"/><br>
+			<s:iterator value="books" var="b">
+				<button type="submit" name="ori_ISBN" value="${b.ISBN}">OK</button>
+			</s:iterator>
+		</form>
+		<button onclick="location='welcome'">Back to main</button>
+
 </body>
 </html>

@@ -22,7 +22,17 @@
            <result name="success">/WEB-INF/content/success.jsp</result>
            <result name="error">/WEB-INF/content/failed.jsp</result>
        </action>
-
+       
+       <action name="ShowBook" class="seproject2Action.ShowBookAction">
+           <result name="success">/WEB-INF/content/update.jsp</result>
+           <result name="error">/WEB-INF/content/failed.jsp</result>
+       </action>
+		
+		<action name="updatebook" class="seproject2Action.UpdateBookAction">
+           <result name="success">/WEB-INF/content/success.jsp</result>
+           <result name="error">/WEB-INF/content/failed.jsp</result>
+       </action>
+		
         <action name="*">
             <result>
                 /WEB-INF/content/{1}.jsp

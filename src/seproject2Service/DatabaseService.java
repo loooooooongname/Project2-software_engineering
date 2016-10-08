@@ -86,6 +86,7 @@ public class DatabaseService {
 				while (rsbook.next()){
 					Book b = new Book(rsbook.getString("ISBN"),
 							rsbook.getString("Title"),
+						//	rsbook.getInt("AuthorID"),
 							rsbook.getString("Publisher"),
 							rsbook.getString("PublishDate"),
 							rsbook.getFloat("Price"));
@@ -147,4 +148,67 @@ public class DatabaseService {
 			return false;
 		}
 	}
+
+	public List<Book> searchbook(String show_book) {
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+		}
+		catch (Exception e){
+			System.out.println("157"+e);
+			return null;
+		}
+		try{
+			Connection connect = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/sepro2","root","wr19950705");
+			Statement stmt = connect.createStatement();
+			ResultSet rs = stmt.executeQuery("select * from book where ISBN = '"+show_book+"' ");
+			List<Book> book = new ArrayList<Book>();
+			while (rs.next()){
+				book.add(new Book(
+								rs.getString("ISBN"),
+								rs.getString("Title"),
+								rs.getString("Publisher"),
+								rs.getString("PublishDate"),
+								rs.getFloat("Price")));
+			}
+			return book;
+		}catch (Exception e){
+			System.out.println("176"+e);
+			return null;
+		}
+	}
+
+	public boolean updatebook(Book book, String ori_ISBN) {
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+		}
+		catch (Exception e){
+			System.out.println("186"+e);
+			return false;
+		}
+		try{
+			Connection connect = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/sepro2","root","wr19950705");
+			Statement stmt1 = connect.createStatement();
+			ResultSet rs1 = stmt1.executeQuery("select * from book where ISBN = '"+ori_ISBN+"' ");
+		//	int authorid = new ;
+			rs1.next();
+			int authorid = rs1.getInt("AuthorID");
+			if (!delbook(ori_ISBN))
+				return false;
+			PreparedStatement Statement=connect.prepareStatement("insert into book values (?,?,?,?,?,?)");
+			Statement.setString(1, book.getISBN());
+			Statement.setString(2, book.getTitle());
+			Statement.setInt(3,authorid);
+			Statement.setString(4, book.getPublisher());
+			Statement.setString(5, book.getPublishdate());
+			Statement.setFloat(6, book.getPrice());
+			Statement.executeUpdate();
+			return true;
+		}catch (Exception e){
+			System.out.println("176"+e);
+			return false;
+		}
+	}
+
 }
