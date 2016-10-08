@@ -4,15 +4,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Add a new book</title>
+<title>Welcome To Book Manager</title>
 
-<style type="text/css">	
+	<style type="text/css">	
 	body{
 		background-color:#E8E8E8;
  		text-align:center; 
  		top:40%;
 	}
-
+	h1{
+		margin-top:100px;
+		margin-bottom:50px;
+	}
 	.button { 
 		display: inline-block; 
 		zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */ 
@@ -54,55 +57,16 @@
 		background: -moz-linear-gradient(top, #f88e11, #f06015); 
 		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#f06015'); 
 	} 
-	 .input-text
-        {
-            border: 1px solid #C3CED9;
-            border-radius: 5px 5px 5px 5px;
-            font-size: 14px;
-            height: 31px;
-            line-height: 31px;
-            margin-right: 10px;
-            padding: 0;
-            width: 327px;
-        }
 </style>
 
 </head>
 <body>
-	<h3>Information of author</h3>
-	<form action="AddBook" method="post">
-		<center>
-		<table>
-			<tr>
-				<td>Name:</td>
-				<td><input type="text" name="author.name" class="input-text"/></td>
-			</tr>
-			<tr>
-				<td>Age:</td>
-				<td><input type="text" name="author.age" class="input-text"/></td>
-			</tr>
-			<tr>
-				<td>Country:</td>
-				<td><input type="text" name="author.country" class="input-text"/></td>
-			</tr>
-		</table>
-		</center>
-			<h3>Information of book</h3>
-		<center>
-		<table>
-			<tr><td>ISBN:</td><td><input type="text" name="book.ISBN" class="input-text"/></td></tr>
-			<tr><td>Title:</td><td><input type="text" name="book.title" class="input-text"/></td></tr>
-			<tr><td>Publisher:</td><td><input type="text" name="book.publisher" class="input-text"/></td></tr>
-			<tr><td>PublishDate:</td><td><input type="text" name="book.publishdate" class="input-text"/></td></tr>
-			<tr><td>Price:</td><td><input type="text" name="book.price" class="input-text"/></td></tr>
-		</table>
-		</center>
-		<br><br><br>
-			<button type="submit" class="button orange" style="width:80px;">ok</button>
-
-		
-	</form>
-	<button onclick="location='welcome'" class="button orange" style="width:80px;margin-top:10px">Back</button> 
-
+	<h1>
+		Welcome To Book Manager
+	</h1>
+	<p>
+	<button name="new" onclick="location='addbook'" class="button orange" style="width:140px;">Add book</button><br><br><br>
+	<button name="search" onclick="location='search'" class="button orange" style="width:140px;">Search book</button>
+	</p>
 </body>
 </html>
