@@ -10,7 +10,16 @@ public class AddBookAction implements Action {
 
 	private Book book;
 	private Author author;
+	private String errormeg;
 	
+	public String getErrormeg() {
+		return errormeg;
+	}
+
+	public void setErrormeg(String errormeg) {
+		this.errormeg = errormeg;
+	}
+
 	public Book getBook() {
 		return book;
 	}
@@ -32,11 +41,13 @@ public class AddBookAction implements Action {
 		
 		DatabaseService ds = new DatabaseService();
 		
-		boolean flag = ds.addBook(book,author);
-		if (flag)
+		String flag = ds.addBook(book,author);
+		if (flag.equals("success"))
 			return SUCCESS;
-		else
+		else{
+			setErrormeg(flag);
 			return ERROR;
+		}
 	}
 
 }

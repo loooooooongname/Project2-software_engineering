@@ -8,18 +8,22 @@ import seproject2Class.Book;
 
 public class DatabaseService {
 
-	public boolean addBook(Book book, Author author) {
-	//	System.out.println("in");
+//	static final String dburl = "jdbc:mysql://localhost:3306/sepro2";
+	static final String dburl = "jdbc:mysql://lghrcopmvdvy.rds.sae.sina.com.cn:10283/sepro2";
+	static final String dbuser = "root";
+	static final String dbpaw = "wr19950705";
+	
+	public String addBook(Book book, Author author) {
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
 		}
 		catch (Exception e){
-			return false;
+			return e.getMessage();
 		}
 		
 		try{
 			Connection connect = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/sepro2","root","wr19950705");
+					dburl,dbuser,dbpaw);
 			Statement stmt = connect.createStatement();
 			ResultSet rs = stmt.executeQuery("select * from author");
 			int id = 0;
@@ -54,14 +58,14 @@ public class DatabaseService {
 				Statement.executeUpdate();
 			}catch(Exception e){
 				System.out.println("55"+e);
-				return false;
+				return e.getMessage();
 			}
 				
 		}catch(Exception e){
 			System.out.println("60"+e);
-			return false;
+			return e.getMessage();
 		}
-		return true;
+		return "success";
 	}
 
 	public List<Book> SearchBookByName(String authorname) {
@@ -74,7 +78,7 @@ public class DatabaseService {
 		}
 		try{
 			Connection connect = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/sepro2","root","wr19950705");
+					dburl,dbuser,dbpaw);
 			Statement stmt = connect.createStatement();
 			Statement stmt2 = connect.createStatement();
 			List<Book> lb = new ArrayList<Book>();
@@ -111,7 +115,7 @@ public class DatabaseService {
 		}
 		try{
 			Connection connect = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/sepro2","root","wr19950705");
+					dburl,dbuser,dbpaw);
 			Statement stmt = connect.createStatement();
 			ResultSet rs = stmt.executeQuery("select * from author where Name = '"+authorname+"' ");
 			List<Author> la = new ArrayList<Author>();
@@ -139,7 +143,7 @@ public class DatabaseService {
 		
 		try{
 			Connection connect = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/sepro2","root","wr19950705");
+					dburl,dbuser,dbpaw);
 			Statement stmt = connect.createStatement();
 			stmt.executeUpdate("delete from book where ISBN = '"+del_book+"' ");
 			return true;
@@ -159,7 +163,7 @@ public class DatabaseService {
 		}
 		try{
 			Connection connect = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/sepro2","root","wr19950705");
+					dburl,dbuser,dbpaw);
 			Statement stmt = connect.createStatement();
 			ResultSet rs = stmt.executeQuery("select * from book where ISBN = '"+show_book+"' ");
 			List<Book> book = new ArrayList<Book>();
@@ -188,7 +192,7 @@ public class DatabaseService {
 		}
 		try{
 			Connection connect = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/sepro2","root","wr19950705");
+					dburl,dbuser,dbpaw);
 			Statement stmt1 = connect.createStatement();
 			ResultSet rs1 = stmt1.executeQuery("select * from book where ISBN = '"+ori_ISBN+"' ");
 		//	int authorid = new ;
