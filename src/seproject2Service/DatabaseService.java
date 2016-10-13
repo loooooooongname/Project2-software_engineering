@@ -9,7 +9,7 @@ import seproject2Class.Book;
 public class DatabaseService {
 
 //	static final String dburl = "jdbc:mysql://localhost:3306/sepro2";
-	static final String dburl = "jdbc:mysql://lghrcopmvdvy.rds.sae.sina.com.cn:10283/sepro2";
+	static final String dburl = "jdbc:mysql://lghrcopmvdvy.rds.sae.sina.com.cn:10283/bookdb";
 	static final String dbuser = "root";
 	static final String dbpaw = "wr19950705";
 	
